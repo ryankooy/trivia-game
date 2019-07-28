@@ -8,6 +8,7 @@ $(document).ready(function() {
 
     var obj = {
         q1: {
+            text: "What is it?",
             a1: false,
             a2: true,
             a3: false,
@@ -51,10 +52,17 @@ $(document).ready(function() {
         }
     };
 
-    var timer = setTimeout(function() { questionOne(); }, 15 * 1000);
-    
+    var buttons = "<button>" + a1 + "</button><br>" + "<button>" + a2 + "</button><br>" + "<button>" + a3 + "</button><br>" + "<button>" + a4 + "</button>";
+    var right;
+    var wrong;
+    var timer = setTimeout(function() { nextQ(); }, 15 * 1000);
     var questionOne = function() {
-        document.getElementByClassName('countdown').innerHTML = "Time remaining: " + timer + " seconds";
-    }
+        document.getElementById('countdown').innerHTML = "Time remaining: " + timer + " seconds";
+        document.getElementById('question').innerHTML = q1.text;
+        document.getElementById('answer-buttons').innerHTML = buttons;
+    };
+    var nextQ = function() {
+        
+    };
 
 });
