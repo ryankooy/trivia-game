@@ -1,0 +1,9 @@
+* {
+    text-align: center;
+    justify-content: center;
+}
+
+#answer-button {
+    display: block;
+    margin: auto;
+}
