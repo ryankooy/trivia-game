@@ -10,52 +10,52 @@ $(document).ready(function() {
         {
             ani: "crocodiles",
             opt: ['a', 'bask', 'c', 'd'],
-            ans: "bask"
+            ans: 1
         },
         {
             ani: "giraffes",
             opt: ['tower', 'b', 'c', 'd'],
-            ans: "tower"
+            ans: 0
         },
         {
             ani: "owls",
             opt: ['hoot', 'b', 'c', 'parliament'],
-            ans: "parliament"
+            ans: 3
         },
         {
             ani: "toads",
             opt: ['knot', 'b', 'c', 'd'],
-            ans: "knot"
+            ans: 0
         },
         {
             ani: "stingrays",
             opt: ['a', 'b', 'fever', 'd'],
-            ans: "fever"
+            ans: 2
         },
         {
             ani: "skunks",
             opt: ['a', 'b', 'stench', 'd'],
-            ans: "stench"
+            ans: 2
         },
         {
             ani: "parrots",
             opt: ['a', 'pandemonium', 'c', 'd'],
-            ans: "pandemonium"
+            ans: 1
         },
         {
             ani: "rhinoceroses",
             opt: ['a', 'b', 'c', 'crash'],
-            ans: "crash"
+            ans: 3
         },
         {
             ani: "lemurs",
             opt: ['leap', 'conspiracy', 'stakeout', 'd'],
-            ans: "conspiracy"
+            ans: 1
         },
         {
             ani: "frogs",
             opt: ['army', 'b', 'command', 'd'],
-            ans: "army"
+            ans: 0
         }
     ];
 
@@ -71,9 +71,13 @@ $(document).ready(function() {
         var animal = array[curr].ani;
         console.log(animal);
 
-        var option = array[curr].opt;
+        var options = array[curr].opt;
+        var select = $(this).val(options);
+        console.log(select);
 
         var answer = array[curr].ans;
+
+        console.log(answer);
 
         var question = "What is the collective name for " + animal + "?";
         $('#question').text(question);
@@ -82,11 +86,14 @@ $(document).ready(function() {
         $('#answer-buttons').html(buttons);
 
         $('#answer-buttons').on('click', function() {
-            if (option === answer) {
+
+
+            if (options === answer) {
                 console.log("yay");
             } else {
                 console.log("nay");
             }
+
         });
 
         curr++;
