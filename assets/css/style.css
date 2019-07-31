@@ -1,6 +1,44 @@
 * {
     text-align: center;
     justify-content: center;
+    color: white;
+    font-size: 20px;
+}
+
+body {
+    background-image: url("../images/rainforest.jpg");
+}
+
+.container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: rgba(10, 56, 1, 0.6);
+    border: 1px solid white;
+    width: 100%;
+
+}
+
+#countdown {
+    font-size: 15px;
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid white;
+}
+
+.b {
+    margin: 10px;
+}
+
+#header {
+    margin: 30px;
+    font-size: 70px;
+    color: white;
 }
 
 #answer-button {
