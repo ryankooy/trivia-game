@@ -65,32 +65,52 @@ $(document).ready(function() {
     var curr = 0;
     var animal = array[curr].ani;
     var options = array[curr].opt;
-    var answer = array[curr].ans;
+    var answer = parseInt(array[curr].ans);
+    console.log(options[answer]);
+    console.log(answer);
+
+    function countdown(sec) {
+        sec = 15;
+        sec--;
+    }
+
+    // function right() {
+
+    // }
+
+    // function wrong() {}
+
+    // function timeUp() {}
 
     function askQues() {
 
         curr++;
 
+        timer();
 
         var question = "What is the collective name for " + animal + "?";
         $('#question').text(question);
 
-        var buttons = "<ul><button>" + array[curr].opt[0] + " of " + animal + "</button>" + "<button>" + array[curr].opt[1] + " of " + animal + "</button>" + "<button>" + array[curr].opt[2] + " of " + animal + "</button>" + "<button>" + array[curr].opt[3] + " of " + animal + "</button></ul>";
+        var buttons = "<button class='b' value='0'>" + options[0] + " of " + animal + "</button>" + "<button class='b' value='1'>" + options[1] + " of " + animal + "</button>" + "<button class='b' value='2'>" + options[2] + " of " + animal + "</button>" + "<button class='b' value='3'>" + options[3] + " of " + animal + "</button>";
         $('#answer-buttons').html(buttons);
 
-        // start answer timer
+        $('.b').on('click', function() {
+
+            var select = parseInt($(this).val());
+
+            if (select === answer) {
+                console.log("oh, yay");
+            } else {
+                console.log("NO");
+            }
+
+            // show pass/fail
+            // start timer for pass/fail display
+            // in the timer function, call askQues()
+
+        });
 
     }
-
-    $('#answer-buttons').on('click', function() {
-
-        if (options === answer) {
-            console.log("yay");
-        } else {
-            console.log("nay");
-        }
-
-    });
 
     $('#start').on('click', function main() {
 
@@ -99,31 +119,31 @@ $(document).ready(function() {
 
     });
 
-        // var timer = setTimeout(function() { nextQ(); }, 15 * 1000);
-  
+    // var timer = setTimeout(function() { nextQ(); }, 15 * 1000);
 
-        // shows buttons
-        // if answer is correct
-        // var right = function() {
-        //     correct = true;
-        //     clearInterval();
-        // };
-        // // if answer is incorrect
-        // var wrong;
-        // // duration of question
-        // // duration of right/wrong screen
-        // var timer2 = setTimeout(function() {}, 3000);
-        // counts down
-        // var nextQ = function() {
-        //     var sec = 15;
-        //     sec--;
-        // };
 
-        // if (!correct) {
-        //     wrong();
-        // } else {
-        //     right();
-        // }
+    // shows buttons
+    // if answer is correct
+    // var right = function() {
+    //     correct = true;
+    //     clearInterval();
+    // };
+    // // if answer is incorrect
+    // var wrong;
+    // // duration of question
+    // // duration of right/wrong screen
+    // var timer2 = setTimeout(function() {}, 3000);
+    // counts down
+    // var nextQ = function() {
+    //     var sec = 15;
+    //     sec--;
+    // };
+
+    // if (!correct) {
+    //     wrong();
+    // } else {
+    //     right();
+    // }
 
 
 });
