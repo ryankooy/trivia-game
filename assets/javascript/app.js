@@ -6,43 +6,58 @@
 
 $(document).ready(function() {
 
-    var obj = {
-        q1: {
-            que: "What is it?",
-            opt: ['a', 'b', 'c', 'd'],
-            ans: ['b', '2']
+    var array = [
+        {
+            ani: "crocodiles",
+            opt: ['a', 'bask', 'c', 'd'],
+            ans: ['bask', '2']
         },
-        q2: {
-            que: "?",
-            opt: ['a', 'b', 'c', 'd'],
-            ans: ['a', '1']
+        {
+            ani: "giraffes",
+            opt: ['tower', 'b', 'c', 'd'],
+            ans: ['tower', '1']
         },
-        q3: {
-            que: "?",
-            opt: ['a', 'b', 'c', 'd'],
-            ans: ['d', '4']
+        {
+            ani: "owls",
+            opt: ['hoot', 'b', 'c', 'parliament'],
+            ans: ['parliament', '4']
         },
-        q4: {
-            que: "?",
-            opt: ['a', 'b', 'c', 'd'],
-            ans: ['d', '4']
+        {
+            ani: "toads",
+            opt: ['knot', 'b', 'c', 'd'],
+            ans: ['knot', '1']
         },
-        q5: {
-            que: "?",
-            opt: ['a', 'b', 'c', 'd'],
-            ans: ['d', '4']
+        {
+            ani: "stingrays",
+            opt: ['a', 'b', 'fever', 'd'],
+            ans: ['fever', '3']
         },
-        q6: {
-            que: "?",
-            opt: ['a', 'b', 'c', 'd'],
-            ans: ['d', '4']
+        {
+            ani: "skunks",
+            opt: ['a', 'b', 'stench', 'd'],
+            ans: ['stench', '3']
         },
-        q7: {
-            que: "?",
-            opt: ['a', 'b', 'c', 'd'],
-            ans: ['d', '4']
+        {
+            ani: "parrots",
+            opt: ['a', 'pandemonium', 'c', 'd'],
+            ans: ['pandemonium', '2']
+        },
+        {
+            ani: "rhinoceroses",
+            opt: ['a', 'b', 'c', 'crash'],
+            ans: ['crash', '4']
+        },
+        {
+            ani: "lemurs",
+            opt: ['leap', 'conspiracy', 'stakeout', 'd'],
+            ans: ['conspiracy', '2']
+        },
+        {
+            ani: "frogs",
+            opt: ['army', 'b', 'command', 'd'],
+            ans: ['army', '1']
         }
-    };
+    ];
 
     var startButt = "<button>Begin!</button>";
     $('#start').append(startButt);
@@ -51,39 +66,51 @@ $(document).ready(function() {
 
         $('#start').empty();
 
-        var one, two, three, four;
-        var correct = false;
-        // shows buttons
-        var buttons = "<button>" + one + "</button><br>" + "<button>" + two + "</button><br>" + "<button>" + three + "</button><br>" + "<button>" + four + "</button>";
-        // if answer is correct
-        var right = function() {
-            correct = true;
-            clearInterval(questionOne);
-        };
-        // if answer is incorrect
-        var wrong;
-        // duration of question
-        var timer = setTimeout(function() { nextQ(); }, 15 * 1000);
-        // duration of right/wrong screen
-        var timer2 = setTimeout(function() {}, 3000);
-        // shows elements
-        var questionOne = function() {
-            document.getElementById('countdown').innerHTML = "Time remaining: " + timer + " seconds";
-            document.getElementById('question').innerHTML = obj.q1.text;
-            document.getElementById('answer-buttons').innerHTML = buttons;
-        };
-        questionOne();
-        // counts down
-        var nextQ = function() {
-            var sec = 15;
-            sec--;
-        };
+        for (var i = 0; i < array.length; i++) {
 
-        if (!correct) {
-            wrong();
-        } else {
-            right();
+            var animal = array[i].ani;
+
+            var question = "What is the collective name for " + animal + "?";
+            $('#question').text(question);
+
+            var buttons = "<button>a " + array[i].opt[0] + " of " + animal + "</button><br>" + "<button>a " + array[i].opt[1] + " of " + animal + "</button><br>" + "<button>a " + array[i].opt[2] + " of " + animal + "</button><br>" + "<button>a " + array[i].opt[3] + " of " + animal + "</button>";
+            $('#answer-buttons').html(buttons);
+
+
+
         }
+
+
+        // shows buttons
+        // if answer is correct
+        // var right = function() {
+        //     correct = true;
+        //     clearInterval(questionOne);
+        // };
+        // // if answer is incorrect
+        // var wrong;
+        // // duration of question
+        // var timer = setTimeout(function() { nextQ(); }, 15 * 1000);
+        // // duration of right/wrong screen
+        // var timer2 = setTimeout(function() {}, 3000);
+        // shows elements
+        // var questionOne = function() {
+        //     document.getElementById('countdown').innerHTML = "Time remaining: " + timer + " seconds";
+        //     document.getElementById('question').innerHTML = obj.q1.text;
+        //     document.getElementById('answer-buttons').innerHTML = buttons;
+        // };
+        // questionOne();
+        // counts down
+        // var nextQ = function() {
+        //     var sec = 15;
+        //     sec--;
+        // };
+
+        // if (!correct) {
+        //     wrong();
+        // } else {
+        //     right();
+        // }
 
     });
 
