@@ -69,13 +69,9 @@ $(document).ready(function() {
     console.log(options[answer]);
     console.log(answer);
 
-    function countdown(sec) {
-        sec = 15;
-        sec--;
-    }
-
-    // function right() {
-
+    // function countdown(sec) {
+    //     sec = 15;
+    //     sec--;
     // }
 
     // function wrong() {}
@@ -86,7 +82,7 @@ $(document).ready(function() {
 
         curr++;
 
-        timer();
+        // countdown();
 
         var question = "What is the collective name for " + animal + "?";
         $('#question').text(question);
@@ -100,6 +96,7 @@ $(document).ready(function() {
 
             if (select === answer) {
                 console.log("oh, yay");
+                right();
             } else {
                 console.log("NO");
             }
@@ -109,6 +106,15 @@ $(document).ready(function() {
             // in the timer function, call askQues()
 
         });
+
+        function right() {
+            
+            $('#answer-buttons').empty();
+            var a = options[answer];
+            var yay = "Yes, indeed! The answer is ' <strong>" + a + "</strong>'!";
+            $('#question').html(yay);
+
+        }
 
     }
 
