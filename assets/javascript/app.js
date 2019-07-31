@@ -63,21 +63,14 @@ $(document).ready(function() {
     $('#start').append(startButt);
 
     var curr = 0;
+    var animal = array[curr].ani;
+    var options = array[curr].opt;
+    var answer = array[curr].ans;
 
-    $('#start').on('click', function main() {
+    function askQues() {
 
-        $('#start').empty();
+        curr++;
 
-        var animal = array[curr].ani;
-        console.log(animal);
-
-        var options = array[curr].opt;
-        var select = $(this).val(options);
-        console.log(select);
-
-        var answer = array[curr].ans;
-
-        console.log(answer);
 
         var question = "What is the collective name for " + animal + "?";
         $('#question').text(question);
@@ -85,18 +78,26 @@ $(document).ready(function() {
         var buttons = "<ul><button>" + array[curr].opt[0] + " of " + animal + "</button>" + "<button>" + array[curr].opt[1] + " of " + animal + "</button>" + "<button>" + array[curr].opt[2] + " of " + animal + "</button>" + "<button>" + array[curr].opt[3] + " of " + animal + "</button></ul>";
         $('#answer-buttons').html(buttons);
 
-        $('#answer-buttons').on('click', function() {
+        // start answer timer
 
+    }
 
-            if (options === answer) {
-                console.log("yay");
-            } else {
-                console.log("nay");
-            }
+    $('#answer-buttons').on('click', function() {
 
-        });
+        if (options === answer) {
+            console.log("yay");
+        } else {
+            console.log("nay");
+        }
 
-        curr++;
+    });
+
+    $('#start').on('click', function main() {
+
+        $('#start').empty();
+        askQues();
+
+    });
 
         // var timer = setTimeout(function() { nextQ(); }, 15 * 1000);
   
@@ -124,6 +125,5 @@ $(document).ready(function() {
         //     right();
         // }
 
-    });
 
 });
