@@ -59,18 +59,26 @@ $(document).ready(function() {
         }
     ];
 
-    var startButt = "<button>Begin!</button>";
+    var startButt = "<button>BEGIN</button>";
     $('#start').append(startButt);
 
     var curr = 0;
-    var animal = array[curr].ani;
-    var options = array[curr].opt;
-    var answer = parseInt(array[curr].ans);
     var interval;
-    console.log(options[answer]);
-    console.log(answer);
+    var animal;
+    var options;
+    var answer;
+    var sec = 15;
+    //console.log(options[answer]);
+    //console.log(answer);
 
     function askQues() {
+
+        animal = array[curr].ani;
+        options = array[curr].opt;
+        answer = parseInt(array[curr].ans);
+        curr++;
+
+        sec = 15;
 
         countdown();
         run();
@@ -88,22 +96,18 @@ $(document).ready(function() {
             var select = parseInt($(this).val());
 
             if (select === answer) {
-                console.log("oh, yay");
+                $('#countdown').empty();
                 right();
             } else {
-                console.log("NO");
+                $('#countdown').empty();
                 wrong();
             }
 
-            // show pass/fail
-            // start timer for pass/fail display
-            // in the timer function, call askQues()
-
         });
+
 
         function countdown() {
 
-            var sec = 15;
             sec--;
             var count = "Time remaining: " + sec + " seconds";
             $('#countdown').text(count);
@@ -113,7 +117,7 @@ $(document).ready(function() {
         function run() {
 
             clearInterval(interval);
-            interval = setInterval(countdown, 15 * 1000);
+            interval = setInterval(countdown, 1 * 1000);
 
         }
 
@@ -124,11 +128,9 @@ $(document).ready(function() {
 
             $('#countdown').empty();
             $('#answer-buttons').empty();
-            var oops = "Oops! Time's up!";
+
+            var oops = "Oops! Time's up.";
             $('#question').html(oops);
-
-            curr++;
-
         }
 
         function right() {
@@ -138,28 +140,24 @@ $(document).ready(function() {
 
             $('#countdown').empty();
             $('#answer-buttons').empty();
+
             var a = options[answer];
-            var yay = "Yes, indeed! The answer is ' <strong>" + a + "</strong>'!";
+            var yay = "Yes, indeed! The answer is ' <strong>" + a + "</strong>'.";
             $('#question').html(yay);
-
-            curr++;
-
         }
 
         function wrong() {
 
+            $('#countdown').empty();
+            $('#answer-buttons').empty();
+
             clearTimeout(quesTime);
             var rightTime = setTimeout(function() { askQues(); }, 3000);
 
-            $('#countdown').empty();
-            $('#answer-buttons').empty();
-            var ohNo = "Oh, wow . . . That's not right!";
+            var ohNo = "Oh, wow. That's not right at all.";
             $('#question').text(ohNo);
 
-            curr++;
-        
         }
-
 
     }
 
@@ -169,7 +167,5 @@ $(document).ready(function() {
         askQues();
 
     });
-
-    //     clearInterval();
 
 });
