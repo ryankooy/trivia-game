@@ -5,15 +5,15 @@ $(document).ready(function() {
             ani: "crocodiles",
             opt: ['dive', 'bask', 'tan', 'nile'],
             ans: 1,
-            imgR: "../images/hi.gif",
-            imgW: "../images/robin.gif"
+            imgR: "assets/images/hi.gif",
+            imgW: "assets/images/robin.gif"
         },
         {
             ani: "giraffes",
             opt: ['tower', 'height', 'swagger', 'herd'],
             ans: 0,
-            imgR: "images/giraffe-pie.gif",
-            imgW: "images/giraffe-run.gif"
+            imgR: "assets/images/giraffe-pie.gif",
+            imgW: "assets/images/giraffe-run.gif"
         },
         {
             ani: "owls",
@@ -69,15 +69,27 @@ $(document).ready(function() {
     var nope = 0;
     var outOfTime = 0;
     var gif;
+    var image;
     var sec = 15;
     var rightTime;
+
+    function showGifR() {
+        gif = array[curr].imgR;
+        image = "<img src='" + gif + "'>";
+        $('#image').html(image);
+    }
+
+    function showGifW() {
+        gif = array[curr].imgW;
+        image = "<img src='" + gif + "'>";
+        $('#image').html(image);
+    }
 
     function askQues() {
 
         animal = array[curr].ani;
         options = array[curr].opt;
         answer = parseInt(array[curr].ans);
-        curr++;
 
         sec = 15;
 
@@ -148,6 +160,8 @@ $(document).ready(function() {
 
         function right() {
 
+            showGifR();
+
             yes++;
 
             clearTimeout(quesTime);
@@ -157,16 +171,18 @@ $(document).ready(function() {
 
             $('#countdown').append('');
             $('#answer-buttons').empty();
-            // gif = array[curr].imgR;
-            // var image = '<img src="' + gif + '">';
-            // $('#image').html(image);
-
+            
             var a = options[answer];
             var yay = "Yes! The answer is &nbsp;<strong>" + a + "</strong>.";
             $('#question').html(yay);
+
+            curr++;
+            
         }
 
         function wrong() {
+
+            showGifW();
 
             nope++;
 
@@ -178,9 +194,10 @@ $(document).ready(function() {
             $('#countdown').append('');
             $('#answer-buttons').empty();
 
-
             var ohNo = "Yeah, nope.";
             $('#question').text(ohNo);
+
+            curr++;
 
         }
 
