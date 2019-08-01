@@ -9,52 +9,52 @@ $(document).ready(function() {
     var array = [
         {
             ani: "crocodiles",
-            opt: ['a', 'bask', 'c', 'd'],
+            opt: ['dive', 'bask', 'tan', 'nile'],
             ans: 1
         },
         {
             ani: "giraffes",
-            opt: ['tower', 'b', 'c', 'd'],
+            opt: ['tower', 'height', 'swagger', 'herd'],
             ans: 0
         },
         {
             ani: "owls",
-            opt: ['hoot', 'b', 'c', 'parliament'],
+            opt: ['hoot', 'ministry', 'flock', 'parliament'],
             ans: 3
         },
         {
             ani: "toads",
-            opt: ['knot', 'b', 'c', 'd'],
+            opt: ['knot', 'wart', 'ribbon', 'ribbit'],
             ans: 0
         },
         {
             ani: "stingrays",
-            opt: ['a', 'b', 'fever', 'd'],
+            opt: ['sickness', 'swim', 'fever', 'school'],
             ans: 2
         },
         {
             ani: "skunks",
-            opt: ['a', 'b', 'stench', 'd'],
+            opt: ['stink', 'pew', 'stench', 'stripe'],
             ans: 2
         },
         {
             ani: "parrots",
-            opt: ['a', 'pandemonium', 'c', 'd'],
+            opt: ['calamity', 'pandemonium', 'chaos', 'torrent'],
             ans: 1
         },
         {
             ani: "rhinoceroses",
-            opt: ['a', 'b', 'c', 'crash'],
+            opt: ['gore', 'accident', 'tumble', 'crash'],
             ans: 3
         },
         {
             ani: "lemurs",
-            opt: ['leap', 'conspiracy', 'stakeout', 'd'],
+            opt: ['leap', 'conspiracy', 'stakeout', 'murder'],
             ans: 1
         },
         {
             ani: "frogs",
-            opt: ['army', 'b', 'command', 'd'],
+            opt: ['army', 'leg', 'command', 'war'],
             ans: 0
         }
     ];
@@ -67,9 +67,11 @@ $(document).ready(function() {
     var animal;
     var options;
     var answer;
+    var yes = 0;
+    var nope = 0;
+    var outOfTime = 0;
     var sec = 15;
-    //console.log(options[answer]);
-    //console.log(answer);
+    var rightTime;
 
     function askQues() {
 
@@ -83,7 +85,7 @@ $(document).ready(function() {
         countdown();
         run();
 
-        var quesTime = setTimeout(function() { timeUp(); }, 15 * 1000);
+        var quesTime = setTimeout(function() { timeUp(); }, 14 * 1000);
 
         var question = "What is the collective name for " + animal + "?";
         $('#question').text(question);
@@ -103,6 +105,11 @@ $(document).ready(function() {
                 wrong();
             }
 
+            if (curr > 9) {
+                $('#countdown').empty();
+                end();
+            }
+
         });
 
 
@@ -112,19 +119,25 @@ $(document).ready(function() {
             var count = "Time remaining: " + sec + " seconds";
             $('#countdown').text(count);
 
+            if (sec < 1) {
+                $('#countdown').empty();
+            }
+
         }
 
         function run() {
 
             clearInterval(interval);
-            interval = setInterval(countdown, 1 * 1000);
+            interval = setInterval(countdown, 1000);
 
         }
 
         function timeUp() {
 
+            outOfTime++;
+
             clearTimeout(quesTime);
-            var rightTime = setTimeout(function() { askQues(); }, 3000);
+            rightTime = setTimeout(function() { askQues(); }, 3000);
 
             $('#countdown').empty();
             $('#answer-buttons').empty();
@@ -135,27 +148,64 @@ $(document).ready(function() {
 
         function right() {
 
-            clearTimeout(quesTime);
-            var rightTime = setTimeout(function() { askQues(); }, 3000);
+            yes++;
 
-            $('#countdown').empty();
+            clearTimeout(quesTime);
+            clearInterval(interval);
+
+            rightTime = setTimeout(function() { askQues(); }, 3000);
+
+            $('#countdown').append('');
             $('#answer-buttons').empty();
 
             var a = options[answer];
-            var yay = "Yes, indeed! The answer is ' <strong>" + a + "</strong>'.";
+            var yay = "Yes! The answer is &nbsp;<strong>" + a + "</strong>.";
             $('#question').html(yay);
         }
 
         function wrong() {
 
-            $('#countdown').empty();
-            $('#answer-buttons').empty();
+            nope++;
 
             clearTimeout(quesTime);
-            var rightTime = setTimeout(function() { askQues(); }, 3000);
+            clearInterval(interval);
 
-            var ohNo = "Oh, wow. That's not right at all.";
+            rightTime = setTimeout(function() { askQues(); }, 3000);
+
+            $('#countdown').append('');
+            $('#answer-buttons').empty();
+
+            var ohNo = "Yeah, nope.";
             $('#question').text(ohNo);
+
+        }
+
+        function end() {
+
+            clearTimeout(quesTime);
+            clearInterval(interval);
+
+            var restart = function() {
+                
+                $('#start').on('click', function main() {
+                    $('#start').empty();
+                    askQues();
+                });
+                $('#question').empty();
+                $('#countdown').empty();
+                $('#answer-buttons').empty();
+
+            };
+
+            rightTime = setTimeout(function() { restart(); }, 10 * 1000);
+
+            $('#countdown').empty();
+
+            var done = "<p>That's it, folks! Let's see what you've done.</p><br>";
+            var score = "<ul><li>Correct: " + yes + "</li>" + "<li>Incorrect: " + nope + "</li>" +
+                "<li>Unanswered: " + outOfTime + "</li></ul>";
+            $('#question').html(done);
+            $('#answer-buttons').append(score);
 
         }
 
@@ -163,7 +213,7 @@ $(document).ready(function() {
 
     $('#start').on('click', function main() {
 
-        $('#start').empty();
+        $('#start').detach();
         askQues();
 
     });
