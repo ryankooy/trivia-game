@@ -1,21 +1,19 @@
-// timer for each question
-// 4 possible answers each
-// both right and wrong pages time out
-// last page displays right, wrong, and unanswered questions
-    // also timed, with automatic reset function
-
 $(document).ready(function() {
 
     var array = [
         {
             ani: "crocodiles",
             opt: ['dive', 'bask', 'tan', 'nile'],
-            ans: 1
+            ans: 1,
+            imgR: "../images/hi.gif",
+            imgW: "../images/robin.gif"
         },
         {
             ani: "giraffes",
             opt: ['tower', 'height', 'swagger', 'herd'],
-            ans: 0
+            ans: 0,
+            imgR: "images/giraffe-pie.gif",
+            imgW: "images/giraffe-run.gif"
         },
         {
             ani: "owls",
@@ -70,6 +68,7 @@ $(document).ready(function() {
     var yes = 0;
     var nope = 0;
     var outOfTime = 0;
+    var gif;
     var sec = 15;
     var rightTime;
 
@@ -84,6 +83,7 @@ $(document).ready(function() {
 
         countdown();
         run();
+        $('#image').empty();
 
         var quesTime = setTimeout(function() { timeUp(); }, 14 * 1000);
 
@@ -157,6 +157,9 @@ $(document).ready(function() {
 
             $('#countdown').append('');
             $('#answer-buttons').empty();
+            // gif = array[curr].imgR;
+            // var image = '<img src="' + gif + '">';
+            // $('#image').html(image);
 
             var a = options[answer];
             var yay = "Yes! The answer is &nbsp;<strong>" + a + "</strong>.";
@@ -174,6 +177,7 @@ $(document).ready(function() {
 
             $('#countdown').append('');
             $('#answer-buttons').empty();
+
 
             var ohNo = "Yeah, nope.";
             $('#question').text(ohNo);
@@ -202,8 +206,8 @@ $(document).ready(function() {
             $('#countdown').empty();
 
             var done = "<p>That's it, folks! Let's see what you've done.</p><br>";
-            var score = "<ul><li>Correct: " + yes + "</li>" + "<li>Incorrect: " + nope + "</li>" +
-                "<li>Unanswered: " + outOfTime + "</li></ul>";
+            var score = "<ul><p>Correct: " + yes + "</p>" + "<p>Incorrect: " + nope + "</p>" +
+                "<p>Unanswered: " + outOfTime + "</p></ul>";
             $('#question').html(done);
             $('#answer-buttons').append(score);
 
