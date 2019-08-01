@@ -18,43 +18,59 @@ $(document).ready(function() {
         {
             ani: "owls",
             opt: ['hoot', 'ministry', 'flock', 'parliament'],
-            ans: 3
+            ans: 3,
+            imgR: "assets/images/owlyes.gif",
+            imgW: "assets/images/owlno2.gif"
         },
         {
             ani: "toads",
             opt: ['knot', 'wart', 'ribbon', 'ribbit'],
-            ans: 0
-        },
-        {
-            ani: "stingrays",
-            opt: ['sickness', 'swim', 'fever', 'school'],
-            ans: 2
-        },
-        {
-            ani: "skunks",
-            opt: ['stink', 'pew', 'stench', 'stripe'],
-            ans: 2
-        },
-        {
-            ani: "parrots",
-            opt: ['calamity', 'pandemonium', 'chaos', 'torrent'],
-            ans: 1
-        },
-        {
-            ani: "rhinoceroses",
-            opt: ['gore', 'accident', 'tumble', 'crash'],
-            ans: 3
-        },
-        {
-            ani: "lemurs",
-            opt: ['leap', 'conspiracy', 'stakeout', 'murder'],
-            ans: 1
+            ans: 0,
+            imgR: "assets/images/toadyes.gif",
+            imgW: "assets/images/toadno.gif"
         },
         {
             ani: "frogs",
             opt: ['army', 'leg', 'command', 'war'],
-            ans: 0
-        }
+            ans: 0,
+            imgR: "assets/images/frogyes.gif",
+            imgW: "assets/images/frogno.gif"
+        },
+        {
+            ani: "stingrays",
+            opt: ['sickness', 'swim', 'fever', 'school'],
+            ans: 2,
+            imgR: "assets/images/stingrayyes.gif",
+            imgW: "assets/images/stingrayno.gif"
+        },
+        {
+            ani: "skunks",
+            opt: ['stink', 'pew', 'stench', 'stripe'],
+            ans: 2,
+            imgR: "assets/images/skunkyes.gif",
+            imgW: "assets/images/skunkno.gif"
+        },
+        {
+            ani: "parrots",
+            opt: ['calamity', 'pandemonium', 'chaos', 'torrent'],
+            ans: 1,
+            imgR: "assets/images/parrotyes.gif",
+            imgW: "assets/images/parrotno2.gif"
+        },
+        {
+            ani: "rhinoceroses",
+            opt: ['gore', 'accident', 'tumble', 'crash'],
+            ans: 3,
+            imgR: "assets/images/rhinoyes.gif",
+            imgW: "assets/images/rhinono.gif"
+        },
+        {
+            ani: "lemurs",
+            opt: ['leap', 'conspiracy', 'stakeout', 'murder'],
+            ans: 1,
+            imgR: "assets/images/lemur.gif",
+            imgW: "assets/images/lemur.gif"
+        },
     ];
 
     var startButt = "<button>BEGIN</button>";
@@ -109,17 +125,17 @@ $(document).ready(function() {
 
             var select = parseInt($(this).val());
 
-            if (select === answer) {
-                $('#countdown').empty();
-                right();
-            } else {
-                $('#countdown').empty();
-                wrong();
-            }
-
             if (curr > 9) {
                 $('#countdown').empty();
                 end();
+            } else {
+                if (select === answer) {
+                    $('#countdown').empty();
+                    right();
+                } else {
+                    $('#countdown').empty();
+                    wrong();
+                }
             }
 
         });
@@ -146,6 +162,8 @@ $(document).ready(function() {
 
         function timeUp() {
 
+            showGifW();
+
             outOfTime++;
 
             clearTimeout(quesTime);
@@ -156,6 +174,9 @@ $(document).ready(function() {
 
             var oops = "Oops! Time's up.";
             $('#question').html(oops);
+
+            curr++;
+
         }
 
         function right() {
@@ -177,7 +198,7 @@ $(document).ready(function() {
             $('#question').html(yay);
 
             curr++;
-            
+
         }
 
         function wrong() {

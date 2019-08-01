@@ -11,8 +11,8 @@ body {
 }
 
 .container {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     background-color: rgba(10, 56, 1, 0.6);
     border: 5px inset white;
     width: 100%;
@@ -46,12 +46,13 @@ button:active {
 
 #header {
     font-family: 'Luckiest Guy', cursive;
-    margin: 30px;
-    font-size: 70px;
+    margin: 20px;
+    font-size: 65px;
     color: white;
 }
 
-#answer-button {
+#answer-buttons {
     display: block;
     margin: auto;
+    width: 300px;
 }
