@@ -1,5 +1,3 @@
-Trivia Game
-
-hw-5
+# A Bunch O' Animals! Trivia Game
 
 https://ryankooy.github.io/trivia-game/
